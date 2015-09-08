@@ -4,10 +4,11 @@ if(getwd() != "C:/Users/kevincre/Desktop/Projects/Data Science Certificate/4-Exp
 MyFile <- "household_power_consumption.txt"
 
 ## Getting dataset
+dev.off()
 dataset <- read.table(MyFile, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".", na.strings="?")
 
 ## Subset data to review two days
-df <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
+df <- dataset[dataset$Date %in% c("1/2/2007","2/2/2007") ,]
 
 #str(subSetData)
 datetime <- strptime(paste(df$Date, df$Time, sep=" "), "%d/%m/%Y %H:%M:%S") 
@@ -36,4 +37,5 @@ plot(datetime, globalReactivePower, type="l", xlab="datetime", ylab="Global_reac
 ## Saving to file
 dev.copy(png, file="plot4.png", height=480, width=480)
 
+dev.off()
 dev.off()
